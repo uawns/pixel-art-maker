@@ -31,7 +31,11 @@ jQuery(document).ready(function() {
 
     }
 
-    $("#sizePicker").on("submit", function(e) {
+    function resetColor(id){
+        $("#" + id).css("background", "#fff");
+    };
+
+    $("#inputHeight, #inputWidth").on("input", function(e) {
         var rw = $("#inputHeight").val();
         var col = $("#inputWidth").val();
         color = $("#colorPicker").val();
@@ -41,13 +45,44 @@ jQuery(document).ready(function() {
         e.preventDefault();
     }); //end of sizePicker
 
-
-  
+//from http://wowmotty.blogspot.com/2017/05/convert-rgba-output-to-hex-color.html
+function rgb2hex(orig) {
+  var a, isPercent,
+    rgb = orig.replace(/\s/g, '').match(/^rgba?\((\d+),(\d+),(\d+),?([^,\s)]+)?/i),
+    alpha = (rgb && rgb[4] || "").trim(),
+    hex = rgb ? "#" +
+    (rgb[1] | 1 << 8).toString(16).slice(1) +
+    (rgb[2] | 1 << 8).toString(16).slice(1) +
+    (rgb[3] | 1 << 8).toString(16).slice(1) : orig;
+  if (alpha !== "") {
+    isPercent = alpha.indexOf("%") > -1;
+    a = parseFloat(alpha);
+    if (!isPercent && a >= 0 && a <= 1) {
+      a = Math.round(255 * a);
+    } else if (isPercent && a >= 0 && a <= 100) {
+      a = Math.round(255 * a / 100)
+    } else {
+      a = "";
+    }
+  }
+  if (a) {
+    hex += (a | 1 << 8).toString(16).slice(1);
+  }
+  return hex;
+}
 
     $("#pixelCanvas").on("click", ".cell", function() {
         var id = $(this).attr("id");
         color = $("#colorPicker").val();
-        colorCell(id, color);
+        var bkColor= rgb2hex($(this).css("background-color"));
+
+        if(bkColor==color){
+            resetColor(id);
+        }else{
+               colorCell(id, color); 
+        }
+      
+    
     });
 
 
