@@ -3,27 +3,63 @@
 <head>
     <title>Pixel Art Maker!</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
 </head>
 <body>
+    <header>
     <h1>Lab: Pixel Art Maker</h1>
+</header>
 
-    <h2>Choose Grid Size</h2>
+<section id="workArea">
+  
+<aside id="toolBox">
+    
+          <h2> <i class="fas fa-wrench"></i> Tools</h2>
+
+    <hr>
+<div class="toolbox">
+    <label for="gridform" class="toolboxLabel"><i class="fas fa-th"></i> Grid size</label>
+     
     <form id="sizePicker">
-        Grid Height:
+     <div class="tools">
+
+        <label for="height" class="toolInputLabel"> H </label>
         <input type="number" id="inputHeight" name="height" min="1" value="1">
-        Grid Width:
+    </div>
+   <div class="tools">
+         <label for="width" class="toolInputLabel"> W</label>
         <input type="number" id="inputWidth" name="width" min="1" value="1">
-        <input type="submit">
+     </div>
+       <!--  <input type="submit"> -->
     </form>
+   
 
-    <h2>Pick A Color</h2>
+</div>
+
+
+<div class="toolbox">
+    <label for="colorPicker" class="toolboxLabel"><i class="fas fa-paint-brush "></i> Pick a color</label>
+      <div class="tools">
     <input type="color" id="colorPicker">
+   </div>
+</div>
+    
 
-    <h2>Design Canvas</h2>
+  
+</aside>
+
+<div class="main">
+    <h3 class="silent-head">Design Canvas</h3>
     <table id="pixelCanvas"></table>
+
+</div>
+    </section>
+
 
     <script src="designs.js"></script>
 </body>

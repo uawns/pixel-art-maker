@@ -1,11 +1,25 @@
-body {
-    text-align: center;
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    height: calc(100% - 80px);
+}
+
 
 h1 {
     font-family: Monoton;
-    font-size: 70px;
+    font-size: 40px;
     margin: 0.2em;
+    color: #888;
 }
 
 h2 {
@@ -36,5 +50,85 @@ td {
 }
 
 input[type=number] {
-    width: 6em;
+    width: 100%;
+    padding-left: 20px;
+    border: none;
+    background-color: #fff;
+}
+
+
+input[type="color"] {
+
+    width: 100%;
+    padding: 0;
+    border: none;
+    background-color: #fff;
+}
+
+#workArea {
+    display: grid;
+    grid-template-columns: 150px auto;
+    height: 100%;
+}
+
+
+.tools {
+    position: relative;
+    display: block;
+    width: auto;
+    padding: 5px;
+    border: 1px solid #eee;
+    
+}
+
+.tools:nth-child(odd) {
+    border-bottom: none;
+}
+
+header {
+    border-bottom: 1px solid #eee;
+    height: 70px;
+}
+
+hr {
+    display: block;
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 1em 0;
+    padding: 0;
+}
+
+aside {
+    display: block;
+    border-right: 1px solid #eee;
+    max-width: 150px;
+    height: 100%;
+    padding: 5px;
+}
+
+.toolbox {
+    margin-bottom: 25px;
+}
+
+
+.toolInputLabel {
+    position: absolute;
+    left: 5px;
+    top: 6px;
+    color: #888;
+}
+
+
+.toolboxLabel {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+}
+
+
+.silent-head {
+    color: #eee;
+    margin: 0;
 }
