@@ -6,7 +6,7 @@
 
 
 jQuery(document).ready(function() {
-    var color = "#000";
+    var color="#ffffff";
 
 
     function makeGrid(rw, col) {
@@ -73,9 +73,10 @@ function rgb2hex(orig) {
 
     $("#pixelCanvas").on("click", ".cell", function() {
         var id = $(this).attr("id");
+        
         color = $("#colorPicker").val();
         var bkColor= rgb2hex($(this).css("background-color"));
-
+console.log(color+" = "+ bkColor);
         if(bkColor==color){
             resetColor(id);
         }else{
@@ -84,6 +85,12 @@ function rgb2hex(orig) {
       
     
     });
+
+//save image
+//
+
+
+
 
 
 

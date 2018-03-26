@@ -34,6 +34,7 @@ table,
 tr,
 td {
     border: 1px solid black;
+    background-color: #fff;
 }
 
 table {
@@ -131,4 +132,18 @@ aside {
 .silent-head {
     color: #eee;
     margin: 0;
+}
+
+button.btn{
+    width:100%;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding:15px 5px;
+    cursor: pointer;
+    background-color: #eee;
+}
+
+button.btn:active{
+    margin-top: 2px;
+    background-color: #ddd;
 }
