@@ -87,8 +87,18 @@ console.log(color+" = "+ bkColor);
     });
 
 //save image
-//
 
+$('#saveImage').click(function(){
+  html2canvas($('#pixelCanvas'),
+  {
+    onrendered: function (canvas) {
+       const a = document.createElement('a');
+      a.href = canvas.toDataURL();
+      a.download = 'pixelart.png';
+      a.click();
+    }
+  });
+});
 
 
 
