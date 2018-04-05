@@ -68,7 +68,7 @@ input[type="color"] {
 
 #workArea {
     display: grid;
-    grid-template-columns: 150px auto;
+    grid-template-columns: 200px auto;
     height: 100%;
 }
 
@@ -104,9 +104,10 @@ hr {
 aside {
     display: block;
     border-right: 1px solid #eee;
-    max-width: 150px;
+    max-width: 200px;
     height: 100%;
     padding: 5px;
+    font-size: 12px;
 }
 
 .toolbox {
@@ -146,4 +147,15 @@ button.btn{
 button.btn:active{
     margin-top: 2px;
     background-color: #ddd;
+}
+/* tool box */
+input.range-slider-value{
+display: inline;
+width: 30px;
+}
+
+input.range-slider-value-hex{
+    display: inline;
+    width: 90px;
+    margin-bottom: 10px;
 }
