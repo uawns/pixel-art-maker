@@ -6,17 +6,31 @@
 
 
 jQuery(document).ready(function() {
-    var color="#ffffff";
+      //elements 
+
+    const pixelCanvas = $("#pixelCanvas");
+    const colorPicker = $("#colorPicker");
+    const defaultColor = "#ffffff";
+    let color = colorPicker.val();
+    let mouseDown;
+
+colorPicker.on("change",function(){
+    color=colorPicker.val();
+});
 
 
+
+
+
+//create a grid 
     function makeGrid(rw, col) {
 
-        $("#pixelCanvas").empty();
+       pixelCanvas.empty();
         //	$("#pixelCanvas").prepend(rw);
         for (var i = 1; i <= rw; i++) {
 
             var row = "<tr id='r" + i + "' class='row'>";
-            $("#pixelCanvas").append(row);
+            pixelCanvas.append(row);
             for (var y = 1; y <= col; y++) {
                 var cell = "<td id='r" + i + "c" + y + "' class='cell'>";
                 $("tr#r" + i).append(cell);
@@ -24,20 +38,16 @@ jQuery(document).ready(function() {
         }
 
     }
+//using default size to make grid
+$(".gridSize-btn").on("click",function (e) {
+    const gridSize = $(this).children("input").val();
+    makeGrid(gridSize,gridSize);
+});
 
-
-    function colorCell(id, color) {
-        $("#" + id).css("background", color);
-
-    }
-
-    function resetColor(id){
-        $("#" + id).css("background", "#fff");
-    };
-
+    //generate the canvas with custom size
     $("#inputHeight, #inputWidth").on("input", function(e) {
-        var rw = $("#inputHeight").val();
-        var col = $("#inputWidth").val();
+        const rw = $("#inputHeight").val();
+        const col = $("#inputWidth").val();
         color = $("#colorPicker").val();
 
         makeGrid(rw, col);
@@ -45,6 +55,8 @@ jQuery(document).ready(function() {
         e.preventDefault();
     }); //end of sizePicker
 
+
+    //convert rgba to hex
 //from http://wowmotty.blogspot.com/2017/05/convert-rgba-output-to-hex-color.html
 function rgb2hex(orig) {
   var a, isPercent,
@@ -70,13 +82,37 @@ function rgb2hex(orig) {
   }
   return hex;
 }
+// paint with drag 
 
-    $("#pixelCanvas").on("click", ".cell", function() {
-        var id = $(this).attr("id");
-        
-        color = $("#colorPicker").val();
-        var bkColor= rgb2hex($(this).css("background-color"));
-console.log(color+" = "+ bkColor);
+$(document).mousedown(function(){
+ mouseDown =true;
+});
+
+$(document).mouseup(function(){
+    mouseDown =false;
+});
+
+pixelCanvas.on("mouseover",".cell",function(){
+if(mouseDown){
+   
+     let id = $(this).attr("id");
+    colorCell(id,color);
+} 
+});
+//to color cell
+function colorCell(id, color) {
+    $("#" + id).css("background", color);
+
+}
+//reset color to default
+function resetColor(id) {
+    $("#" + id).css("background", "#fff");
+};
+// detect click on canvas
+    pixelCanvas.on("click", ".cell", function() {
+        let id = $(this).attr("id");
+        let bkColor= rgb2hex($(this).css("background-color"));
+        console.log(color+" = "+ bkColor);
         if(bkColor==color){
             resetColor(id);
         }else{
@@ -89,7 +125,7 @@ console.log(color+" = "+ bkColor);
 //save image
 
 $('#saveImage').click(function(){
-  html2canvas($('#pixelCanvas'),
+  html2canvas(pixelCanvas,
   {
     onrendered: function (canvas) {
        const a = document.createElement('a');
