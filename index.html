@@ -20,21 +20,39 @@
   
 <aside id="toolBox">
     
-          <h2> <i class="fas fa-wrench"></i> Tools</h2>
+          <!-- <h2> <i class="fas fa-wrench"></i> Tools</h2> -->
 
-    <hr>
-<div class="toolbox">
-    <label for="gridform" class="toolboxLabel"><i class="fas fa-th"></i> Grid size</label>
-     
+
+<div class="toolbox clrfx">
+    <label for="gridform" class="toolboxLabel">Grid size</label>
+
+
+    <div class="tools">
+<span class="btn gridSize-btn" >
+    <i class="fas fa-th fa-xs"></i>
+    <input type="hidden" value="10">
+</span>
+<span class="btn gridSize-btn">
+    <i class="fas fa-th fa-sm"></i>
+    <input type="hidden" value="20">
+</span>
+<span class="btn gridSize-btn">
+    <i class="fas fa-th fa-lg"></i>
+    <input type="hidden" value="30">
+</span>
+    </div>
+<label class="toolboxLabel">Custom grid size</label>
     <form id="sizePicker">
      <div class="tools">
 
-        <label for="height" class="toolInputLabel"> H </label>
+        <div class="inputSet">  
         <input type="number" id="inputHeight" name="height" min="1" value="1">
-    </div>
-   <div class="tools">
-         <label for="width" class="toolInputLabel"> W</label>
+<label for="height" class="toolInputLabel"> H </label>
+</div>
+<div class="inputSet">
         <input type="number" id="inputWidth" name="width" min="1" value="1">
+<label for="width" class="toolInputLabel"> W</label>
+</div>
      </div>
        <!--  <input type="submit"> -->
     </form>
@@ -43,11 +61,43 @@
 </div>
 
 
-<div class="toolbox">
-    <label for="colorPicker" class="toolboxLabel"><i class="fas fa-paint-brush "></i> Pick a color</label>
-      <div class="tools">
-    <input type="color" id="colorPicker">
+<div class="toolbox clrfx">
+    <label for="colorPicker" class="toolboxLabel"> Pick a color</label>
+    <div class="tools">
+        <input type="color" id="colorPicker">
+<div class="range-slider">
+
+    <div class="range-colors">
+<span class="range-slider-text">Hex</span>
+        <input type="text" class="range-slider-value-hex" id="input-color-hexvalue" value="0">
+
+   
+    </div>
+    <div class="range-colors">
+        <label for="range-slider-value" class="range-slider-text">R</label>
+        <input type="number" id="range-r" class="range-slider-value" value="0">
+        <input class="range-slider-range" type="range" id="slide-range-r" value="0" min="0" max="255" >
+        
+    </div>
+    <div class="range-colors">
+        <label for="range-slider-value" class="range-slider-text">G</label>
+        <input type="number" id="range-g" class="range-slider-value" value="0">
+<input class="range-slider-range" type="range" id="slide-range-g" value="0" min="0" max="255">
+ 
+    </div>
+    <div class="range-colors">
+        <label for="range-slider-value" class="range-slider-text">B</label>
+        <input type="number" id="range-b" class="range-slider-value" value="0">
+<input class="range-slider-range" type="range" id="slide-range-b" value="0" min="0" max="255">
+    
+    </div>
+</div>
+
+      
+   
    </div>
+
+
 </div>
     
 
