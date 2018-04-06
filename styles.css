@@ -166,7 +166,6 @@ button.btn:active{
     margin-bottom: 5px;
 }
 input.range-slider-value{
-display: inline;
 width: 30px;
 }
 
@@ -196,7 +195,6 @@ span.btn{
 }
 
 input.range-slider-value-hex{
-    display: inline;
     width: 90px;
     margin-bottom: 10px;
 }
