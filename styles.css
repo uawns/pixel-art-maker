@@ -59,7 +59,7 @@ td {
     display: table;
 }
 
-input[type=number] {
+ .inputSet input[type=number] {
     width: 100%;
     padding-left: 20px;
     border: 1px solid #ccc;;
@@ -67,9 +67,10 @@ input[type=number] {
 }
 
 
-input[type="color"] {
+#colorPicker{
 
-    width: 100%;
+    width: 50px;
+    height: 50px;
     padding: 0;
     border: none;
     background-color: #fff;
@@ -166,7 +167,7 @@ button.btn:active{
     margin-bottom: 5px;
 }
 input.range-slider-value{
-width: 30px;
+width: 40px;
 }
 
 .range-slider-range{

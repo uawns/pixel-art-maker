@@ -10,17 +10,95 @@ jQuery(document).ready(function() {
 
     const pixelCanvas = $("#pixelCanvas");
     const colorPicker = $("#colorPicker");
-    const defaultColor = "#ffffff";
+    const hexBox =$("#input-color-hexvalue");
+    const hexR = $("#range-r");
+    const hexG = $("#range-g");
+    const hexB = $("#range-b");
+    const rangeR = $("#slide-range-r");
+    const rangeG = $("#slide-range-g");
+    const rangeB = $("#slide-range-b");
+    const r= "r";
+    const g= "g";
+    const b= "b";
+
+
+    //values
+    const defaultCanvasColor = "#ffffff";
+    const defaultBrushColor = "#000000";
+    hexBox.val(defaultBrushColor);
     let color = colorPicker.val();
     let mouseDown;
 
+
+// Listen for color
+let listenRgbInputs = function () {
+    let red = hexR.val();
+    let green = hexG.val();
+    let blue = hexB.val();
+    if(red && green && blue ){
+    color = rgb2hex(`rgb(${red},${green},${blue}`);
+    reflectColorChange(color);
+    }
+};
+
+let listenRgbRange = function () {
+    let red = rangeR.val();
+    let green = rangeG.val();
+    let blue = rangeB.val();
+    if (red && green && blue) {
+        color = rgb2hex(`rgb(${red},${green},${blue}`);
+        reflectColorChange(color);
+    }
+};
+
+
 colorPicker.on("change",function(){
     color=colorPicker.val();
+    reflectColorChange(color);
 });
 
+hexBox.on("change input",function(){
+    color=hexBox.val();
+    reflectColorChange(color);
+});
+
+hexR.on("change input",listenRgbInputs);
+hexG.on("change input", listenRgbInputs);
+hexB.on("change input", listenRgbInputs);
+rangeR.on("change input", listenRgbRange);
+rangeG.on("change input", listenRgbRange);
+rangeB.on("change input", listenRgbRange);
+
+//color picker changes reflects
+function reflectColorChange(color){
+colorPicker.val(color);
+hexBox.val(color);
+hexR.val(getRgb(color, r));
+hexG.val(getRgb(color, g));
+hexB.val(getRgb(color, b));
+rangeR.val(getRgb(color, r));
+rangeG.val(getRgb(color, g));
+rangeB.val(getRgb(color, b));
+}
 
 
+//get individual hex val
 
+function getRgb(hex,key){
+    hex=hex.slice(1);
+    let bigint =parseInt(hex,16);
+    let r = (bigint >> 16) & 255;
+    let g = (bigint >> 8) & 255;
+    let b = bigint & 255;
+if(key=='r'){
+    return r
+}else if(key == 'g'){
+return g
+}else if(key == 'b') {
+return b
+}
+
+}
 
 //create a grid 
     function makeGrid(rw, col) {
@@ -59,7 +137,7 @@ $(".gridSize-btn").on("click",function (e) {
     //convert rgba to hex
 //from http://wowmotty.blogspot.com/2017/05/convert-rgba-output-to-hex-color.html
 function rgb2hex(orig) {
-  var a, isPercent,
+  let a, isPercent,
     rgb = orig.replace(/\s/g, '').match(/^rgba?\((\d+),(\d+),(\d+),?([^,\s)]+)?/i),
     alpha = (rgb && rgb[4] || "").trim(),
     hex = rgb ? "#" +
