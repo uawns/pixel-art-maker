@@ -66,6 +66,18 @@ td {
     background-color: #fff;
 }
 
+.inline{
+    display: inline !important;
+}
+
+.inlineSet{
+    margin: 10px auto;
+}
+
+.inlineSet input{
+    vertical-align: middle;
+    margin-left:5px;
+}
 
 #colorPicker{
 
@@ -80,6 +92,7 @@ td {
     display: grid;
     grid-template-columns: 200px auto;
     height: 100%;
+    background:#efefef;
 }
 
 
@@ -98,8 +111,9 @@ td {
 } */
 
 header {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #dfdfdf;
     height: 70px;
+    background:#efefef;
 }
 
 hr {
@@ -107,23 +121,31 @@ hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid #eee;
+    border-top: 1px solid #dfdfdf;
     margin: 1em 0;
     padding: 0;
 }
 
 aside {
     display: block;
-    border-right: 1px solid #eee;
+    border-right: 1px solid #dfdfdf;
     max-width: 200px;
     height: 100%;
     padding: 5px;
     font-size: 12px;
 }
 
+.toolCategoryLabel{
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 900;
+    text-shadow: 1px 1px 0px #fff;
+}
+
 .toolbox {
-    margin-bottom: 15px;
-    border: 1px solid rgb(245, 245, 245);
+    margin-bottom: 5px;
+   
+     border-bottom: 1px solid #dfdfdf;
     padding: 5px;
 }
 
@@ -140,7 +162,7 @@ aside {
     display: block;
     text-align: left;
     font-weight: bold;
-    color: #ccc;
+    color: #999;
 }
 
 
@@ -156,11 +178,14 @@ button.btn{
     padding:15px 5px;
     cursor: pointer;
     background-color: #eee;
+    box-shadow: -3px 3px 0px 0px rgba(184, 184, 184, 1);
 }
 
 button.btn:active{
-    margin-top: 2px;
-    background-color: #ddd;
+    padding-top: 17px;
+    padding-bottom:13px;
+    background-color: #eee;
+    box-shadow: none;
 }
 /* tool box */
 .range-colors{
@@ -198,4 +223,19 @@ span.btn{
 input.range-slider-value-hex{
     width: 90px;
     margin-bottom: 10px;
+}
+
+/*grid background color*/
+
+input.gridColor{
+    border:none;
+    padding:0;
+    background: none;
+}
+
+table#pixelCanvas,
+#pixelCanvas tr,
+#pixelCanvas td {
+    background: #fefefe;
+    border:1px solid #ddd;
 }

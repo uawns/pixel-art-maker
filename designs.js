@@ -1,37 +1,42 @@
-// Select color input
-// Select size input
-
-// When size is submitted by the user, call makeGrid()
-
-
-
-jQuery(document).ready(function() {
+$(document).ready(function() {
       //elements 
 
-    const pixelCanvas = $("#pixelCanvas");
-    const colorPicker = $("#colorPicker");
-    const hexBox =$("#input-color-hexvalue");
-    const hexR = $("#range-r");
-    const hexG = $("#range-g");
-    const hexB = $("#range-b");
-    const rangeR = $("#slide-range-r");
-    const rangeG = $("#slide-range-g");
-    const rangeB = $("#slide-range-b");
-    const r= "r";
-    const g= "g";
-    const b= "b";
-
+    const pixelCanvas = $("#pixelCanvas"),
+    colorPicker = $("#colorPicker"),
+    hexBox =$("#input-color-hexvalue"),
+    hexR = $("#range-r"),
+    hexG = $("#range-g"),
+    hexB = $("#range-b"),
+    rangeR = $("#slide-range-r"),
+    rangeG = $("#slide-range-g"),
+    rangeB = $("#slide-range-b"),
+    gridBackColor=$("#gridBackColorPicker"),
+    gridLineColor=$("#gridLineColorPicker"),
+    checkBox =$("#gridDisplayCheck");
+    
+    //string vals
+    const r= "r",
+    g= "g",
+    b= "b",
+    gridLine="gridline",
+    gridBack="gridback",
+    uncheck="uncheck";
 
     //values
-    const defaultCanvasColor = "#ffffff";
-    const defaultBrushColor = "#000000";
-    hexBox.val(defaultBrushColor);
+    const defaultCanvasColor = "#fefefe",
+     defaultLineColor = "#dddddd",
+     defaultBrushColor = "#000000";
     let color = colorPicker.val();
     let mouseDown;
+    // let gridBackColor=$("#gridBackColorPicker").val();
+    // let gridLineColor=$("#gridLineColorPicker").val();
+
+//setting the default value in Hex Input Box
+ hexBox.val(defaultBrushColor);
 
 
 // Listen for color
-let listenRgbInputs = function () {
+function listenRgbInputs() {
     let red = hexR.val();
     let green = hexG.val();
     let blue = hexB.val();
@@ -41,7 +46,7 @@ let listenRgbInputs = function () {
     }
 };
 
-let listenRgbRange = function () {
+function listenRgbRange() {
     let red = rangeR.val();
     let green = rangeG.val();
     let blue = rangeB.val();
@@ -91,11 +96,11 @@ function getRgb(hex,key){
     let g = (bigint >> 8) & 255;
     let b = bigint & 255;
 if(key=='r'){
-    return r
+    return r;
 }else if(key == 'g'){
-return g
+return g;
 }else if(key == 'b') {
-return b
+return b;
 }
 
 }
@@ -115,7 +120,62 @@ return b
             }
         }
 
+        if(checkBox[0].checked){
+         gridStyle(gridBack);
+         gridStyle(gridLine);
+     }else{
+        gridStyle(uncheck);
+     }
+
     }
+
+
+//changing the grid colors styles
+
+
+ function gridStyle(key){
+    if(key=="gridback"){
+        
+        let backColor = gridBackColor.val();
+        pixelCanvas.css("background", backColor);
+
+         $("table#pixelCanvas tr").css("background", backColor);
+         $("table#pixelCanvas td").css("background", backColor);
+
+
+    } else if(key=="gridline"){
+    let backLine = gridLineColor.val();
+        pixelCanvas.css("border-color", backLine);
+
+         $("table#pixelCanvas tr").css("border", `1px solid ${backLine}`);
+         $("table#pixelCanvas td").css("border", `1px solid ${backLine}`);
+
+   }else if(key==uncheck){
+   pixelCanvas.css("border", "none");
+  $("table#pixelCanvas tr").css("border", "none");
+  $("table#pixelCanvas td").css("border", "none");
+   }else{
+    console.log("input error!");
+   }
+};
+
+
+gridBackColor.on("change input", function(){
+    gridStyle(gridBack);
+});
+
+gridLineColor.on("change input", function(){
+    gridStyle(gridLine);
+});
+
+checkBox.on("change", function(){
+     if(checkBox[0].checked){
+         gridStyle(gridBack);
+         gridStyle(gridLine);
+     }else{
+        gridStyle(uncheck);
+     }
+});
 //using default size to make grid
 $(".gridSize-btn").on("click",function (e) {
     const gridSize = $(this).children("input").val();
@@ -150,7 +210,7 @@ function rgb2hex(orig) {
     if (!isPercent && a >= 0 && a <= 1) {
       a = Math.round(255 * a);
     } else if (isPercent && a >= 0 && a <= 100) {
-      a = Math.round(255 * a / 100)
+      a = Math.round(255 * a / 100);
     } else {
       a = "";
     }

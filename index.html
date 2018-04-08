@@ -23,7 +23,34 @@
           <!-- <h2> <i class="fas fa-wrench"></i> Tools</h2> -->
 
 
+
+   
+
 <div class="toolbox clrfx">
+
+
+     <label for="Gridsetting" class="toolCategoryLabel">Set Canvas</label>
+     <div class="inlineSet">
+     <label for="colorPicker" class="toolboxLabel inline"> Display Grid</label>
+    <input type="checkbox" id="gridDisplayCheck" checked>
+        </div>
+ <label for="colorPicker" class="toolboxLabel"> Grid  Color</label>
+    <div class="tools gridcolorset clrfx">
+<div class="inputSet">
+       <input type="color" id="gridBackColorPicker" class="gridColor" value="#fefefe">
+<label for="gridBackColorPicker" class="toolInputLabel"> Bk</label>
+</div>
+
+<div class="inputSet">
+       <input type="color" id="gridLineColorPicker" class="gridColor" value="#dddddd">
+<label for="gridLineColorPicker" class="toolInputLabel">  lines</label>
+</div>
+
+
+
+       
+    </div>
+
     <label for="gridform" class="toolboxLabel">Grid size</label>
 
 
@@ -62,7 +89,8 @@
 
 
 <div class="toolbox clrfx">
-    <label for="colorPicker" class="toolboxLabel"> Pick a color</label>
+    <label for="Gridsetting" class="toolCategoryLabel">Tool Settings</label>
+    <label for="colorPicker" class="toolboxLabel"> Pick a brush color</label>
     <div class="tools">
         <input type="color" id="colorPicker">
 <div class="range-slider">
@@ -104,7 +132,13 @@
  <div class="toolbox">
     
 
-     <button id="saveImage" class="btn"><i class="fas fa-save"></i> Save your art</button>
+     <button id="resetCanvas" class="btn"><i class="fas fa-undo fa-sm"></i> Reset Canvas</button>
+
+ </div> 
+ <div class="toolbox">
+    
+
+     <button id="saveImage" class="btn"><i class="fas fa-save"></i> export your art</button>
 
  </div> 
 
