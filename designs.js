@@ -138,9 +138,7 @@ return b;
         
         let backColor = gridBackColor.val();
         pixelCanvas.css("background", backColor);
-
-         $("table#pixelCanvas tr").css("background", backColor);
-         $("table#pixelCanvas td").css("background", backColor);
+         $("table#pixelCanvas td").not(".userColored").css("background", backColor);
 
 
     } else if(key=="gridline"){
@@ -239,7 +237,7 @@ if(mouseDown){
 });
 //to color cell
 function colorCell(id, color) {
-    $("#" + id).css("background", color);
+    $("#" + id).css("background", color).addClass('userColored');
 
 }
 //reset color to default
