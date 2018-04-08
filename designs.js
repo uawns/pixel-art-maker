@@ -13,6 +13,7 @@ $(document).ready(function() {
     gridBackColor=$("#gridBackColorPicker"),
     gridLineColor=$("#gridLineColorPicker"),
     checkBox =$("#gridDisplayCheck");
+    resetCanvas=$("#resetCanvas");
     
     //string vals
     const r= "r",
@@ -20,7 +21,8 @@ $(document).ready(function() {
     b= "b",
     gridLine="gridline",
     gridBack="gridback",
-    uncheck="uncheck";
+    uncheck="uncheck",
+    reset="reset";
 
     //values
     const defaultCanvasColor = "#fefefe",
@@ -134,28 +136,46 @@ return b;
 
 
  function gridStyle(key){
-    if(key=="gridback"){
-        
+    switch(key){
+        case gridBack:
         let backColor = gridBackColor.val();
         pixelCanvas.css("background", backColor);
-         $("table#pixelCanvas td").not(".userColored").css("background", backColor);
+        $("table#pixelCanvas td").not(".userColored").css("background", backColor);
+        break;
 
-
-    } else if(key=="gridline"){
-    let backLine = gridLineColor.val();
+        case gridLine:
+        let backLine = gridLineColor.val();
         pixelCanvas.css("border-color", backLine);
+        $("table#pixelCanvas tr").css("border", `1px solid ${backLine}`);
+        $("table#pixelCanvas td").css("border", `1px solid ${backLine}`);
+        break;
+        
+        case uncheck:
+        pixelCanvas.css("border", "none");
+        $("table#pixelCanvas tr").css("border", "none");
+        $("table#pixelCanvas td").css("border", "none");
+        break;
 
-         $("table#pixelCanvas tr").css("border", `1px solid ${backLine}`);
-         $("table#pixelCanvas td").css("border", `1px solid ${backLine}`);
+        case reset:
+        pixelCanvas.css("background", defaultCanvasColor);
+        $("table#pixelCanvas td").css("background", defaultCanvasColor);
+         pixelCanvas.css("border-color", defaultLineColor);
+        $("table#pixelCanvas tr").css("border", `1px solid ${defaultLineColor}`);
+        $("table#pixelCanvas td").css("border", `1px solid ${defaultLineColor}`);
+        gridLineColor.val(defaultLineColor);
+        gridBackColor.val(defaultCanvasColor);
+        color=defaultBrushColor;
+        reflectColorChange(color);
+        checkBox.prop("checked",true);
 
-   }else if(key==uncheck){
-   pixelCanvas.css("border", "none");
-  $("table#pixelCanvas tr").css("border", "none");
-  $("table#pixelCanvas td").css("border", "none");
-   }else{
-    console.log("input error!");
-   }
-};
+
+        break;
+
+        default:
+        console.log("input error!");
+   
+}
+}
 
 
 gridBackColor.on("change input", function(){
@@ -174,6 +194,15 @@ checkBox.on("change", function(){
         gridStyle(uncheck);
      }
 });
+
+//reset the canvas
+resetCanvas.on("click",function(e){
+        gridStyle(reset);
+        console.log(reset);
+});
+
+
+
 //using default size to make grid
 $(".gridSize-btn").on("click",function (e) {
     const gridSize = $(this).children("input").val();
